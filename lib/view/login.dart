@@ -6,6 +6,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: RaisedButton(
+      color: Colors.greenAccent,
       child: Text('Sign In with Google'),
       onPressed: () {
         Navigator.push(
