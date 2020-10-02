@@ -9,9 +9,8 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Finance Tracker'),
       ),
-      body: Container(
-        child: MainDrawer(),
-      ),
+      drawer: MainDrawer(),
+      body: Container(),
       floatingActionButton: FloatingActionButton(
         onPressed: null,
         child: Icon(Icons.add),
