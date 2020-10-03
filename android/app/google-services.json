@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "247453365263",
+    "firebase_url": "https://finance-tracker-7aa76.firebaseio.com",
+    "project_id": "finance-tracker-7aa76",
+    "storage_bucket": "finance-tracker-7aa76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247453365263:android:b7f98314847f24a47a1f7a",
+        "android_client_info": {
+          "package_name": "com.example.finance_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247453365263-40a38ntm47polt77g6anc79lmsjqkmms.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finance_tracker",
+            "certificate_hash": "ab10bd8daa457279e5d2b37001a264001fd641d5"
+          }
+        },
+        {
+          "client_id": "247453365263-oi6fuumg0tpvc3j5epso9lilth6tpvul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9Q_2WbEFiORNu-F-1KuCFQN2hGXt5lHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247453365263-oi6fuumg0tpvc3j5epso9lilth6tpvul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
