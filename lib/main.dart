@@ -1,5 +1,6 @@
 import 'package:finance_tracker/services/firebase_init.dart';
 import 'package:flutter/material.dart';
+import './view/add_transaction.dart';
 import 'view/login.dart';
 
 void main() {
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.green[800]),
+
       home: FirebaseInit(),
     );
   }
