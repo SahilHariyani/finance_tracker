@@ -12,7 +12,10 @@ class HomePage extends StatelessWidget {
       drawer: MainDrawer(),
       body: Container(),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        },
         child: Icon(Icons.add),
       ),
     );

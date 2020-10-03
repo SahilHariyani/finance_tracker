@@ -1,3 +1,4 @@
+import 'package:finance_tracker/view/login.dart';
 import 'package:flutter/material.dart';
 
 // Import the firebase_core plugin
@@ -23,7 +24,7 @@ class FirebaseInit extends StatelessWidget {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return MyApp();
+          return LoginPage();
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
