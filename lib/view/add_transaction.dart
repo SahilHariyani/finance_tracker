@@ -1,5 +1,8 @@
 import 'package:finance_tracker/view/home.dart';
+<<<<<<< HEAD
 import 'package:cloud_firestore/cloud_firestore.dart';
+=======
+>>>>>>> 0af024db372a0dc3a7a6bc6b0d2dd0a7243fdba5
 import 'package:flutter/material.dart';
 
 class AddTransaction extends StatefulWidget {
@@ -102,7 +105,19 @@ class _AddTransaction extends State<AddTransaction> {
                     debugPrint(controllerDesc.text);
                     debugPrint(_current_amount_type_selected);
 
+<<<<<<< HEAD
                     addData(); // this method add data to firebase
+=======
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage(
+                              title: controllerTitle.text,
+                              amount: controllerAmount.text,
+                              description: controllerDesc.text,
+                              type: _current_amount_type_selected
+                            )));
+>>>>>>> 0af024db372a0dc3a7a6bc6b0d2dd0a7243fdba5
                   }),
             ),
           )
@@ -116,6 +131,7 @@ class _AddTransaction extends State<AddTransaction> {
       this._current_amount_type_selected = newTypeSelected;
     });
   }
+<<<<<<< HEAD
 
   addData() {
     Map<String, dynamic> demoData = {
@@ -127,4 +143,6 @@ class _AddTransaction extends State<AddTransaction> {
         FirebaseFirestore.instance.collection('data');
     collectionReference.add(demoData);
   }
+=======
+>>>>>>> 0af024db372a0dc3a7a6bc6b0d2dd0a7243fdba5
 }
