@@ -1,3 +1,5 @@
+import 'package:finance_tracker/services/sign_in_google.dart';
+
 import 'home.dart';
 import 'package:flutter/material.dart';
 
@@ -11,8 +13,17 @@ class LoginPage extends StatelessWidget {
         color: Colors.greenAccent,
         child: Text('Sign In with Google'),
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
+           signInWithGoogle().then((result) {
+          if (result != null) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return HomePage();
+                },
+              ),
+            );
+          }
+        });
         },
       )),
     );
