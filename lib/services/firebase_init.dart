@@ -24,6 +24,7 @@ class FirebaseInit extends StatelessWidget {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
+          
           return LoginPage();
         }
 

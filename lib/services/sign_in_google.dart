@@ -1,6 +1,9 @@
+import 'package:finance_tracker/model/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -9,7 +12,7 @@ String name;
 String email;
 String imageUrl;
 
-Future<String> signInWithGoogle() async {
+Future<String> signInWithGoogle(BuildContext context) async {
   await Firebase.initializeApp();
 
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
@@ -47,7 +50,8 @@ Future<String> signInWithGoogle() async {
     assert(user.uid == currentUser.uid);
 
     print('signInWithGoogle succeeded: $user');
-
+   Provider.of<UserModel>(context, listen: false).addUser(user.displayName, user.email,user.photoURL);
+    // UserModel().addUser(user.displayName, user.email,user.photoURL);
     return '$user';
   }
 

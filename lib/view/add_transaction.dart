@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finance_tracker/model/user.dart';
 import 'package:finance_tracker/view/home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddTransaction extends StatefulWidget {
   @override
@@ -101,15 +104,17 @@ class _AddTransaction extends State<AddTransaction> {
                     debugPrint(controllerDesc.text);
                     debugPrint(_current_amount_type_selected);
 
+                    addTransaction(controllerTitle.text, controllerAmount.text,
+                        controllerDesc.text, _current_amount_type_selected);
+
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => HomePage(
-                              title: controllerTitle.text,
-                              amount: controllerAmount.text,
-                              description: controllerDesc.text,
-                              type: _current_amount_type_selected
-                            )));
+                                title: controllerTitle.text,
+                                amount: controllerAmount.text,
+                                description: controllerDesc.text,
+                                type: _current_amount_type_selected)));
                   }),
             ),
           )
@@ -122,5 +127,30 @@ class _AddTransaction extends State<AddTransaction> {
     setState(() {
       this._current_amount_type_selected = newTypeSelected;
     });
+  }
+
+  Future<void> addTransaction(
+      String title, String amount, String desc, String type) {
+
+       var userName = Provider.of<UserModel>(context, listen: false).name;
+        var userImage = Provider.of<UserModel>(context, listen: false).imageUrl;
+    Map<String, dynamic> transactionData = {
+      "userImage": userImage,
+      "userName":userName,
+      "title": title,
+      "amount": amount,
+      "description": desc,
+      "type": type,
+      "time": DateTime.now()
+    };
+// Create a CollectionReference called users that references the firestore collection
+    final CollectionReference trans =
+        FirebaseFirestore.instance.collection('projects');
+    return trans
+        .doc('gurucool')
+        .collection('transactions')
+        .add(transactionData)
+        .then((value) => print("Transaction Added"))
+        .catchError((error) => print("Failed to add user: $error"));
   }
 }

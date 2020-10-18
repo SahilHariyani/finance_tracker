@@ -11,13 +11,15 @@ class LoginPage extends StatelessWidget {
       child: Center(
           child: RaisedButton(
         color: Colors.greenAccent,
+        
         child: Text('Sign In with Google'),
         onPressed: () {
-           signInWithGoogle().then((result) {
+           signInWithGoogle(context).then((result) {
           if (result != null) {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
+                  
                   return HomePage();
                 },
               ),
