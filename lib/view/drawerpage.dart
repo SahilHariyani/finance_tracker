@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_tracker/model/user.dart';
 import 'package:finance_tracker/services/sign_in_google.dart';
 import 'package:finance_tracker/view/login.dart';
@@ -5,8 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MainDrawer extends StatelessWidget {
+  final CollectionReference users =
+      FirebaseFirestore.instance.collection('users');
+
   @override
   Widget build(BuildContext context) {
+    final userName = Provider.of<UserModel>(context, listen: false).name;
     return Drawer(
         child: Column(
       children: <Widget>[
@@ -49,15 +54,38 @@ class MainDrawer extends StatelessWidget {
             },
           )),
         ),
-        ExpansionTile(
-          title: Text('Projects'),
-          children: [
-            ListTile(
-              title: Text('GuruCool'),
-              trailing: Icon(Icons.info),
-            )
-          ],
-        ),
+
+         Flexible(
+           child: StreamBuilder<QuerySnapshot>(
+                  stream: users.where('userName', isEqualTo: userName).snapshots(),
+                  builder: (BuildContext context,
+            AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+            return Text('Something went wrong');
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+        }
+
+        if (snapshot.hasData == null) {
+            print('test');
+            return Center(child: Text('No data yet'));
+        }
+
+        return new ListView(
+            children:
+            snapshot.data.docs.map((DocumentSnapshot document) {
+              // print(document.data()['userImage']);
+
+              return new ListTile(
+            title: new Text(document.data()['project_admin'][0]),
+            // subtitle: new Text(document.data()['title']),
+              );
+            }).toList(),
+        );
+                  }),
+         ),
         ListTile(
           title: Text('Add Project'),
           trailing: Icon(Icons.add),
@@ -76,8 +104,8 @@ class MainDrawer extends StatelessWidget {
             );
           },
         )
+
       ],
     ));
   }
 }
-  

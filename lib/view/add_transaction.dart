@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_tracker/model/user.dart';
 import 'package:finance_tracker/view/home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -103,10 +104,13 @@ class _AddTransaction extends State<AddTransaction> {
                     debugPrint(controllerAmount.text);
                     debugPrint(controllerDesc.text);
                     debugPrint(_current_amount_type_selected);
-
+                    
+                    // this method add data to firebase
                     addTransaction(controllerTitle.text, controllerAmount.text,
                         controllerDesc.text, _current_amount_type_selected);
 
+
+                    
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -115,6 +119,7 @@ class _AddTransaction extends State<AddTransaction> {
                                 amount: controllerAmount.text,
                                 description: controllerDesc.text,
                                 type: _current_amount_type_selected)));
+
                   }),
             ),
           )
@@ -128,6 +133,7 @@ class _AddTransaction extends State<AddTransaction> {
       this._current_amount_type_selected = newTypeSelected;
     });
   }
+
 
   Future<void> addTransaction(
       String title, String amount, String desc, String type) {
@@ -153,4 +159,8 @@ class _AddTransaction extends State<AddTransaction> {
         .then((value) => print("Transaction Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
+
+
+
+
 }

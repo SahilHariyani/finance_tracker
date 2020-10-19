@@ -51,8 +51,10 @@ Future<String> signInWithGoogle(BuildContext context) async {
 
     print('signInWithGoogle succeeded: $user');
    Provider.of<UserModel>(context, listen: false).addUser(user.displayName, user.email,user.photoURL);
+   Provider.of<UserModel>(context, listen: false).addUserToFirestore();
     // UserModel().addUser(user.displayName, user.email,user.photoURL);
     return '$user';
+    
   }
 
   return null;
